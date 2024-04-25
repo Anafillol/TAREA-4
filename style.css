@@ -1,63 +1,165 @@
-@font-face {
-    font-family: Stockholm;
-    src: url("fonts/Stockholm/fonts/Stockholm/Stockholm_Mono.ttf");
+body {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cabecera__logo{
+    margin-left: 10rem;
+    height: auto;
+    width: 10%;
+}
+.cabecera__contenedor {
+    z-index: 1;
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0);
+    overflow-x: hidden;
+    transition: width 1s, height 1s;
+    display: flex;
+     flex-direction: column;
+    justify-content: flex-start; /* Alineo el contenido */
+    align-items: flex-end; 
+}
+
+.cabecera__contenedor.expanded {
+    /* Cuando se expanda cubra toodo = el menú está abierto */
+    width: 100%;
+
+}
+
+.cabecera__elementoLista a:hover {
+    color: lightgray; /* Al pasar el raton por encima se pone griss */
+}
+
+ .cabecera__elementoLista{
+    list-style-type: none;
+    color: white;
 } 
 
-body {
-    background-color: black; 
-    box-sizing: border-box;
-    font-family:Stockholm;
-    font-size: 34px;
-    margin: 0;
-    }
-
- .container_palabras {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    justify-items: center;
-     height: 100vh;
-     gap: 20px;
- }
-
-.tabContent{
-    display: flex;
-    gap: 20px; 
-
-}
-
- .tab__tabLink{
-    border: none;
-    background-color: transparent; 
-    color: rgba(255, 255, 255, 0.624);
-    font-size: 1.5em; 
-    cursor: pointer; 
- }
-
- .tab__tabLink:hover{
+.cabecera__link{
+    font-size: 1.5rem;
+    text-align: right;
     color: white;
-
- }
-
- .header__imagen{
-     height: auto;
-     width: 100%;
- }
-
- .tabContent .header__imagen{
-    opacity: 0; 
-    transition: opacity 1s ease;
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    z-index: -1; /* pongoo la imagen detrás*/
+    text-decoration: none;
+    margin: 2.5rem;
+    font-family: Stockholm ;
 }
-  
-  .tabContent:hover .header__imagen {
-    display: block;
+
+.cabecera__menu{
+    width: 100%;
+}
+
+.header__botonCerrar{
+    cursor: pointer;
+    margin: 1rem;
+    border: none;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+}
+
+.header__botonAbrir{
+    cursor: pointer;
+    border: none;
+    margin: 2rem;
+    background-color: transparent;
+    font-size: 1rem;
+    color:  black;
+    position: fixed;
+    top: 0;
+    right: 0; /* Ajustado para que el botón est en el lado izq */
+    z-index: 2;
+}
+
+.seccion_detallesProductos {
+    display: flex;
+    flex-direction: column; /* pongoo los elementos verticalmente */
+    align-items: flex-start; 
+    margin-left: 10rem; 
+    font-family: Arial, sans-serif; 
+}
+
+.seccion_detallesSilla,
+.seccion_detallesMesa {
+    opacity: 0; 
+    transition: opacity 1s ease; 
+    pointer-events: none; /* No se puede interactuar con elementos ocultos or ahora */
+}
+
+.seccion_detallesSilla.active,
+.seccion_detallesMesa.active {
+    opacity: 1; 
+    pointer-events: auto;
+}
+
+.nombre {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.titulo {
+    color: black;
+    font-size: 1.2em; 
+    margin: 5px; 
+    font-weight: bold;
+}
+
+.descripcion {
+    margin-bottom: 10px; /* así le dooy debajo del párrafo */
+    color:#777;
+}
+
+button {
+    background-color: black; 
+    color: white; 
+    padding: 10px 20px; /* Espacio alrededor del botón */
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 1em;
+}
+
+.seccion_detallesMesa {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    display: none; /* Aqui oculto la mesa hasta que la active cliclando en ella */
+}
+
+.seccion_detallesMesa.active {
     opacity: 1;
-    width: 100%; 
-    height: 100vh;
-  } 
+    pointer-events: auto;
+    display: block; /* Muestra la info al clicar */
+}
+
+.subcategorias {
+    display: none;
+    transition: opacity 0.5s; 
+    position: absolute;
+    padding: 10px; 
+    width: max-content; /* Asii se pone justo debajo de collection */
+    margin-top: 10px; 
+    color: white;
+    font-size: 0.9rem; 
+
+} 
+
+.subcategorias.expanded {
+    display: block;
+    opacity: 1;    
+}
+
+/* Oculta la imagen del sofá meintras */
+.Imagen__sofa {
+    display: none;
+    margin-top: 10px;
+}
+
+/* Muestra la imagen del sofá cuando las subcategorías de 'furniture' están expandidas :) */
+.furniture-subcategorias.expanded .Imagen__sofa {
+    display: block;
+}
