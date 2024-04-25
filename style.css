@@ -1,0 +1,63 @@
+@font-face {
+    font-family: Stockholm;
+    src: url("fonts/Stockholm/fonts/Stockholm/Stockholm_Mono.ttf");
+} 
+
+body {
+    background-color: black; 
+    box-sizing: border-box;
+    font-family:Stockholm;
+    font-size: 34px;
+    margin: 0;
+    }
+
+ .container_palabras {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    justify-items: center;
+     height: 100vh;
+     gap: 20px;
+ }
+
+.tabContent{
+    display: flex;
+    gap: 20px; 
+
+}
+
+ .tab__tabLink{
+    border: none;
+    background-color: transparent; 
+    color: rgba(255, 255, 255, 0.624);
+    font-size: 1.5em; 
+    cursor: pointer; 
+ }
+
+ .tab__tabLink:hover{
+    color: white;
+
+ }
+
+ .header__imagen{
+     height: auto;
+     width: 100%;
+ }
+
+ .tabContent .header__imagen{
+    opacity: 0; 
+    transition: opacity 1s ease;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: -1; /* pongoo la imagen detrás*/
+}
+  
+  .tabContent:hover .header__imagen {
+    display: block;
+    opacity: 1;
+    width: 100%; 
+    height: 100vh;
+  } 
